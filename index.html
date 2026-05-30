@@ -30,16 +30,15 @@
                 <div class="bg-brand-orange text-white p-2 rounded-lg font-bold text-xl">VP</div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight">Estrategia de Rentabilidad Gastronómica</h1>
-                    <p class="text-xs text-gray-400">Plataforma Integral de Herramientas y Gestión de Sedes</p>
+                    <p class="text-xs text-gray-400">Plataforma Avanzada de Control y Simulación Multi-Sede</p>
                 </div>
             </div>
             <div class="flex items-center gap-2 bg-slate-800 p-2 rounded-lg border border-slate-700 w-full sm:w-auto">
-                <label class="text-xs font-bold text-gray-400 uppercase whitespace-nowrap">📍 Sede Ciudad:</label>
-                <select id="global-ciudad" onchange="cargarDatosSede()" class="bg-brand-dark text-white text-sm font-semibold rounded p-1 focus:outline-none w-full">
+                <label class="text-xs font-bold text-gray-400 uppercase whitespace-nowrap">📍 Sede / Ciudad:</label>
+                <select id="global-ciudad" onchange="cambiarSedeGlobal()" class="bg-brand-dark text-white text-sm font-semibold rounded p-1 focus:outline-none w-full">
                     <option value="caucasia">Caucasia</option>
                     <option value="medellin">Medellín</option>
                     <option value="monteria">Montería</option>
-                    <option value="apartado">Apartadó</option>
                 </select>
             </div>
         </div>
@@ -47,165 +46,165 @@
 
     <nav class="bg-white border-b border-gray-200 sticky top-[130px] sm:top-[73px] z-40 shadow-sm overflow-x-auto flex">
         <div class="max-w-7xl mx-auto flex w-full">
-            <button onclick="switchTab('p-estructura')" id="btn-p-estructura" class="tab-btn px-5 py-3 text-xs sm:text-sm font-bold border-b-2 border-brand-orange text-brand-orange whitespace-nowrap">📉 1. Estructura Financiera</button>
-            <button onclick="switchTab('p-cmv')" id="btn-p-cmv" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">🥩 2. Calculadora CMV Real</button>
-            <button onclick="switchTab('p-platos')" id="btn-p-platos" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">🍔 3. Margen de Platos</button>
-            <button onclick="switchTab('p-auditoria')" id="btn-p-auditoria" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">📋 4. Auditoría Operativa</button>
+            <button onclick="switchTab('p-estructura')" id="btn-p-estructura" class="tab-btn px-5 py-3 text-xs sm:text-sm font-bold border-b-2 border-brand-orange text-brand-orange whitespace-nowrap">📉 1. Estructura e Ingresos</button>
+            <button onclick="switchTab('p-platos')" id="btn-p-platos" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">🍔 2. Ingeniería de Menú</button>
+            <button onclick="switchTab('p-cmv')" id="btn-p-cmv" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">🥩 3. Auditoría CMV Real</button>
+            <button onclick="switchTab('p-auditoria')" id="btn-p-auditoria" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">📋 4. Checklist Operativo</button>
         </div>
     </nav>
 
-    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6">
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6 space-y-6">
 
         <section id="p-estructura" class="tabs-content active space-y-6">
-            <div class="bg-amber-50 border-l-4 border-brand-orange p-4 rounded-r-lg text-sm text-amber-900">
-                <strong>Herramienta 1: Matriz de Costos Mensuales por Ciudad.</strong> Digita los gastos globales del mes seleccionado para medir el porcentaje de desvío frente a los modelos de la industria.
-            </div>
-
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div class="bg-white p-5 rounded-xl shadow border border-gray-200 lg:col-span-2 space-y-4">
-                    <h3 class="font-bold text-base text-brand-dark border-b pb-2">Ingreso de Cifras del Mes</h3>
-                    <div>
-                        <label class="block text-xs font-bold text-gray-600 mb-1">VENTAS NETAS TOTALES (SIN IMPUESTOS):</label>
-                        <input type="number" id="est-ventas" value="80000000" oninput="calcularMatrizCostos()" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange font-bold text-emerald-700 bg-emerald-50/20">
-                    </div>
+                    <h3 class="font-bold text-base text-brand-dark border-b pb-2">Gastos Operativos Mensuales</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
+                            <label class="block text-xs font-bold text-gray-600 mb-1">VENTAS NETAS BASE ($):</label>
+                            <input type="number" id="est-ventas" value="80000000" oninput="calcularTodo()" class="w-full p-2 border border-gray-300 rounded-lg font-bold text-emerald-700 bg-emerald-50/30">
+                        </div>
+                        <div>
                             <label class="block text-xs font-medium text-gray-600 mb-1">Costo de Mercancía Vendida (CMV Real $):</label>
-                            <input type="number" id="est-cmv" value="31000000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <input type="number" id="est-cmv" value="31000000" oninput="calcularTodo()" class="w-full p-2 border border-gray-300 rounded-lg">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-600 mb-1">Mano de Obra / Nóminas operativa ($):</label>
-                            <input type="number" id="est-nomina" value="22400000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Mano de Obra / Nóminas ($):</label>
+                            <input type="number" id="est-nomina" value="22400000" oninput="calcularTodo()" class="w-full p-2 border border-gray-300 rounded-lg">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-600 mb-1">Arriendo (Canon e inmobiliaria $):</label>
-                            <input type="number" id="est-arriendo" value="8000000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Arriendo (Canon fijo $):</label>
+                            <input type="number" id="est-arriendo" value="8000000" oninput="calcularTodo()" class="w-full p-2 border border-gray-300 rounded-lg">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-gray-600 mb-1">Servicios Públicos ($):</label>
-                            <input type="number" id="est-servicios" value="3200000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <input type="number" id="est-servicios" value="3200000" oninput="calcularTodo()" class="w-full p-2 border border-gray-300 rounded-lg">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-600 mb-1">Marketing y Pauta Publicitaria ($):</label>
-                            <input type="number" id="est-marketing" value="2400000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Marketing y Publicidad ($):</label>
+                            <input type="number" id="est-marketing" value="2400000" oninput="calcularTodo()" class="w-full p-2 border border-gray-300 rounded-lg">
                         </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-medium text-gray-600 mb-1">Reparación y Mantenimiento ($):</label>
-                            <input type="number" id="est-mantenimiento" value="800000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                            <input type="number" id="est-mantenimiento" value="800000" oninput="calcularTodo()" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Otros Gastos Financieros/Seguros ($):</label>
+                            <input type="number" id="est-otros" value="9700000" oninput="calcularTodo()" class="w-full p-2 border border-gray-300 rounded-lg">
                         </div>
                     </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Otros Gastos (Suministros, Financieros, Imprevistos $):</label>
-                        <input type="number" id="est-otros" value="9700000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
-                    </div>
-                    <div class="flex justify-end pt-2">
-                        <button onclick="guardarDatosSede()" class="bg-brand-orange text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-amber-600 shadow">💾 Guardar Cifras de esta Ciudad</button>
+
+                    <div class="bg-amber-50/60 p-4 rounded-xl border border-amber-200 mt-4 space-y-4">
+                        <h4 class="font-bold text-xs uppercase text-amber-900 tracking-wider flex items-center gap-2">🚀 Simulador de Crecimiento Comercial (Basado en Pág. 10)</h4>
+                        <p class="text-xs text-amber-800">Modifica las variables proactivas de marketing para ver cómo impactan las ventas y diluyen tus costos fijos.</p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <div class="flex justify-between text-xs font-medium mb-1"><span>Atracción & Fidelización de Clientes:</span> <span id="val-pilar1" class="font-bold text-brand-orange">+0%</span></div>
+                                <input type="range" id="slide-pilar1" min="0" max="50" value="0" oninput="calcularTodo()" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-orange">
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-xs font-medium mb-1"><span>Aumento de Ticket Promedio (Mesa):</span> <span id="val-pilar2" class="font-bold text-brand-orange">+0%</span></div>
+                                <input type="range" id="slide-pilar2" min="0" max="30" value="0" oninput="calcularTodo()" class="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-orange">
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="bg-brand-dark text-white p-5 rounded-xl shadow border flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-center text-brand-orange border-b border-slate-700 pb-2 mb-4">Análisis Porcentual</h3>
-                        <div class="space-y-3 text-xs">
-                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Costo Insumos (CMV):</span> <span id="out-pct-cmv" class="font-bold">0%</span></div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Mano de Obra:</span> <span id="out-pct-nomina" class="font-bold">0%</span></div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Arrendamiento:</span> <span id="out-pct-arriendo">0%</span></div>
+                    <div class="space-y-4">
+                        <h3 class="font-bold text-center text-brand-orange border-b border-slate-700 pb-2">Resultados del Periodo</h3>
+                        <div class="space-y-2 text-xs">
+                            <div class="flex justify-between border-b border-slate-800 pb-1 text-gray-300"><span>Ventas Base:</span> <span id="out-base-v">$0</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1 text-emerald-400 font-bold"><span>Ventas Proyectadas:</span> <span id="out-proj-v">$0</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Costo Insumos (CMV Real):</span> <span id="out-pct-cmv" class="font-bold">0%</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Nómina y Personal:</span> <span id="out-pct-nomina" class="font-bold">0%</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Arrendamiento Fijo:</span> <span id="out-pct-arriendo">0%</span></div>
                             <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Servicios Públicos:</span> <span id="out-pct-servicios">0%</span></div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Marketing:</span> <span id="out-pct-marketing">0%</span></div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Mantenimiento:</span> <span id="out-pct-mantenimiento">0%</span></div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Otros Gastos:</span> <span id="out-pct-otros">0%</span></div>
                         </div>
                     </div>
                     <div class="mt-6 p-4 bg-slate-800 rounded-lg text-center">
-                        <span class="block text-[11px] uppercase text-gray-400 tracking-wider">Utilidad de Operación Neta</span>
-                        <span id="out-utilidad-total" class="text-xl font-black block mt-1 text-emerald-400">$0 (0%)</span>
+                        <span class="block text-[11px] uppercase text-gray-400 tracking-wider">Utilidad Bruta Calculada</span>
+                        <span id="out-utilidad-total" class="text-2xl font-black block mt-1 text-emerald-400">$0 (0%)</span>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="p-cmv" class="tabs-content space-y-6">
-            <div class="bg-slate-800 text-white p-4 rounded-lg flex items-center justify-between">
-                <div>
-                    <h3 class="font-bold text-base">Herramienta 2: Auditor de Fugas e Inventarios</h3>
-                    <p class="text-xs text-gray-400 mt-0.5">Aplica la fórmula estricta de la guía para calcular tu Costo de Mercancía Real.</p>
-                </div>
-                <span class="text-xs font-mono bg-slate-700 px-2 py-1 rounded text-brand-orange">Fórmula Pág. 4</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-5 rounded-xl shadow border space-y-4">
-                    <h4 class="font-bold text-sm text-brand-dark border-b pb-2">Entradas de Auditoría de Stock</h4>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Ventas Netas Totales del Periodo ($):</label>
-                        <input type="number" id="cmv-ventas" value="80000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Valor de Inventario Inicial ($):</label>
-                        <input type="number" id="cmv-inicial" value="12000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Compras Totales de Mercancía / Proveedores ($):</label>
-                        <input type="number" id="cmv-compras" value="34000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Valor de Inventario Final Físico ($):</label>
-                        <input type="number" id="cmv-final" value="15000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
-                    </div>
-                </div>
-
-                <div class="bg-white p-5 rounded-xl shadow border flex flex-col justify-between">
-                    <div>
-                        <h4 class="font-bold text-sm text-brand-dark border-b pb-2 mb-4">Resultado e Impacto Operativo</h4>
-                        <div class="p-4 bg-gray-50 rounded-lg space-y-2">
-                            <div class="flex justify-between text-sm"><span>Costo de Materia Prima Consumida:</span> <span id="out-cmv-consumido" class="font-bold text-brand-dark">$0</span></div>
-                            <div class="flex justify-between text-sm border-t pt-2 mt-2"><span>Porcentaje de CMV Real Evaluado:</span> <span id="out-cmv-pct-real" class="font-black text-lg text-brand-dark">0%</span></div>
-                        </div>
-                    </div>
-                    <div id="cmv-alert-box" class="p-4 rounded-lg text-xs mt-4">
-                        </div>
                 </div>
             </div>
         </section>
 
         <section id="p-platos" class="tabs-content space-y-6">
-            <div class="bg-amber-50 border-l-4 border-brand-orange p-4 rounded-r-lg text-sm text-amber-900">
-                <strong>Herramienta 3: Escandallo e Ingeniería de Menú.</strong> La guía estipula buscar metas de rentabilidad por plato con un margen de utilidad superior al <strong>65%</strong> para equilibrar sobrecostos.
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-5 rounded-xl shadow border space-y-4">
-                    <h4 class="font-bold text-sm text-brand-dark border-b pb-2">Costeo de Ficha Técnica Individual</h4>
+            <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b pb-4 mb-4">
                     <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Nombre del Plato / Producto:</label>
-                        <input type="text" value="Pargo Rojo Especial" class="w-full p-2 border rounded-lg bg-gray-50 font-medium">
+                        <h3 class="font-bold text-lg text-brand-dark">🍔 Análisis de Escandallos e Ingeniería de Menú</h3>
+                        <p class="text-xs text-gray-500">Asegura que tus platos tengan un margen superior al <strong>65%</strong> para mantener la rentabilidad.</p>
                     </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Costo Total de Insumos / Materia Prima (Receta $):</label>
-                        <input type="number" id="plt-costo" value="14000" oninput="calcularMargenPlato()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-medium text-gray-600 mb-1">Precio de Venta Neto Sugerido al Público ($):</label>
-                        <input type="number" id="plt-venta" value="45000" oninput="calcularMargenPlato()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
-                    </div>
+                    <button onclick="abrirModalPlato()" class="bg-brand-orange text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-amber-600 transition shadow">
+                        ➕ Añadir Nuevo Plato
+                    </button>
                 </div>
 
+                <div id="lista-platos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    </div>
+            </div>
+        </section>
+
+        <div id="modal-plato" class="hidden fixed inset-0 bg-brand-dark/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-5 space-y-4">
+                <h3 id="modal-titulo" class="font-bold text-lg text-brand-dark border-b pb-2">Formulario de Plato</h3>
+                <input type="hidden" id="plato-index">
+                <div>
+                    <label class="block text-xs font-medium text-gray-600 mb-1">Nombre Comercial del Plato:</label>
+                    <input type="text" id="plato-nombre" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Costo de Insumos ($):</label>
+                        <input type="number" id="plato-costo" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Precio de Venta ($):</label>
+                        <input type="number" id="plato-venta" class="w-full p-2 border rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
+                    </div>
+                </div>
+                <div class="flex justify-end gap-2 pt-2 border-t text-xs font-bold">
+                    <button onclick="cerrarModalPlato()" class="bg-gray-100 text-gray-700 py-2 px-4 rounded hover:bg-gray-200">Cancelar</button>
+                    <button onclick="guardarPlatoDinamico()" class="bg-brand-orange text-white py-2 px-4 rounded hover:bg-amber-600">Guardar Producto</button>
+                </div>
+            </div>
+        </div>
+
+        <section id="p-cmv" class="tabs-content space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-xl shadow border space-y-4">
+                    <h4 class="font-bold text-sm text-brand-dark border-b pb-2">Cálculo de Consumo Físico de Stock</h4>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Ventas Netas Totales ($):</label>
+                        <input type="number" id="cmv-ventas" value="80000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Valor de Inventario Inicial Físico ($):</label>
+                        <input type="number" id="cmv-inicial" value="12000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Compras Totales de Mercancía ($):</label>
+                        <input type="number" id="cmv-compras" value="34000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Valor de Inventario Final Físico ($):</label>
+                        <input type="number" id="cmv-final" value="15000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg">
+                    </div>
+                </div>
                 <div class="bg-white p-5 rounded-xl shadow border flex flex-col justify-between">
                     <div>
-                        <h4 class="font-bold text-sm text-brand-dark border-b pb-2 mb-4">Rentabilidad del Plato</h4>
-                        <div class="grid grid-cols-2 gap-4">
-                            <div class="bg-slate-50 p-3 rounded text-center">
-                                <span class="text-[11px] block text-gray-500 font-medium uppercase">Margen en Dinero</span>
-                                <span id="out-plt-dinero" class="text-lg font-bold text-brand-dark">$0</span>
-                            </div>
-                            <div class="bg-slate-50 p-3 rounded text-center">
-                                <span class="text-[11px] block text-gray-500 font-medium uppercase">Porcentaje de Margen</span>
-                                <span id="out-plt-pct" class="text-lg font-black text-brand-dark">0%</span>
-                            </div>
+                        <h4 class="font-bold text-sm text-brand-dark border-b pb-2 mb-4">Resultado de Eficiencia en Cocina</h4>
+                        <div class="p-4 bg-gray-50 rounded-lg space-y-2 text-sm">
+                            <div class="flex justify-between"><span>Materia Prima Consumida Real:</span> <span id="out-cmv-consumido" class="font-bold">$0</span></div>
+                            <div class="flex justify-between border-t pt-2 mt-2 font-bold text-base"><span>% CMV Real Resultante:</span> <span id="out-cmv-pct-real">0%</span></div>
                         </div>
                     </div>
-                    <div id="plt-alert-box" class="p-4 rounded-lg text-xs mt-4 font-medium">
-                        </div>
+                    <div id="cmv-alert-box" class="p-4 rounded-lg text-xs mt-4"></div>
                 </div>
             </div>
         </section>
@@ -213,43 +212,14 @@
         <section id="p-auditoria" class="tabs-content space-y-6">
             <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
                 <div class="flex justify-between items-center border-b pb-3 mb-4">
-                    <h3 class="font-bold text-lg text-brand-dark">📋 Auditoría Interna & Repositorio de Contenido</h3>
-                    <button onclick="saveChecklist()" class="bg-brand-dark text-white text-xs font-bold py-2 px-4 rounded hover:bg-slate-800 transition">💾 Guardar Progreso Global</button>
+                    <h3 class="font-bold text-lg text-brand-dark">📋 Plan de Control Operativo Semanal</h3>
+                    <button onclick="saveChecklist()" class="bg-brand-dark text-white text-xs font-bold py-2 px-4 rounded hover:bg-slate-800 transition">💾 Guardar Checklist</button>
                 </div>
-
-                <div class="space-y-6">
-                    <div class="p-4 bg-slate-50 rounded-xl border border-gray-200">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-2 mb-3">
-                            <h4 class="font-bold text-sm text-brand-orange">Eje: Control de Inventario y Cadena de Suministro</h4>
-                            <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-medium">Soporte: Podcasts #140, #175, #191, #199</span>
-                        </div>
-                        <div class="space-y-3">
-                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-0" class="mt-0.5"> <div><strong>¿Se calculan los costos físicos reales cruzados contra el POS?</strong> <p class="text-gray-500">Permite detectar brechas teóricas inmediatas (Episodios 175 y 199 con Eliana Muñoz).</p></div></label>
-                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-1" class="mt-0.5"> <div><strong>¿Manejas ventanas de horarios fijos para la recepción de proveedores?</strong> <p class="text-gray-500">Evita coincidir con picos de comensales, garantizando el pesaje y conteo de insumos (Episodio 191 con David Penagos).</p></div></label>
-                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-2" class="mt-0.5"> <div><strong>¿Se ejecuta estrictamente el protocolo PEPS (FIFO)?</strong> <p class="text-gray-500">Rotación obligatoria por orden de ingreso para evitar mermas por vencimientos en cámaras de refrigeración.</p></div></label>
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 rounded-xl border border-gray-200">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-2 mb-3">
-                            <h4 class="font-bold text-sm text-brand-orange">Eje: Optimización Operativa de Nómina y Líderes</h4>
-                            <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-medium">Soporte: Podcasts #121, #163</span>
-                        </div>
-                        <div class="space-y-3">
-                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-3" class="mt-0.5"> <div><strong>¿Se distribuyen las horas de mano de obra según curvas de venta?</strong> <p class="text-gray-500">Evita sobrecargas salariales y recargos excesivos en días flojos (como lunes o martes).</p></div></label>
-                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-4" class="mt-0.5"> <div><strong>¿El establecimiento cuenta con organigramas y manuales de inducción escritos?</strong> <p class="text-gray-500">Reduce drásticamente la tasa de rotación laboral agilizando el acoplamiento del nuevo personal.</p></div></label>
-                        </div>
-                    </div>
-
-                    <div class="p-4 bg-slate-50 rounded-xl border border-gray-200">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-2 mb-3">
-                            <h4 class="font-bold text-sm text-brand-orange">Eje: Activación Comercial y Ticket Promedio</h4>
-                            <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-medium">Soporte: Podcasts #117, #131, #132, #156, #178, #179</span>
-                        </div>
-                        <div class="space-y-3">
-                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-5" class="mt-0.5"> <div><strong>¿Los meseros aplican ventas sugestivas para inflar el consumo?</strong> <p class="text-gray-500">Entrenamiento enfocado a sugerir entradas, postres llamativos y bebidas especiales (Episodios 156 y 178).</p></div></label>
-                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-6" class="mt-0.5"> <div><strong>¿Automatizas campañas directas a tus bases de datos?</strong> <p class="text-gray-500">Lanzamiento proactivo de promociones de corta duración y felicitaciones de cumpleaños automatizadas (Episodio 179).</p></div></label>
-                        </div>
+                <div class="space-y-4">
+                    <div class="p-4 bg-slate-50 rounded-xl border space-y-3">
+                        <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-0" class="mt-0.5"> <div><strong>¿Se pesan y auditan las compras en los horarios asignados? (Podcast #191)</strong></div></label>
+                        <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-1" class="mt-0.5"> <div><strong>¿La nómina está ajustada a las curvas de tráfico de comensales?</strong></div></label>
+                        <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-2" class="mt-0.5"> <div><strong>¿Los meseros tienen incentivos y capacitación para elevar el ticket? (Podcast #178)</strong></div></label>
                     </div>
                 </div>
             </div>
@@ -260,7 +230,7 @@
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="text-center sm:text-left">
                 <p class="font-medium text-gray-300">&copy; 2026 Todos los derechos de autor reservados a nombre de Vibras Positivas.</p>
-                <p class="mt-0.5 text-gray-500">Código de ingeniería de software unificado para la optimización de rendimientos financieros.</p>
+                <p class="mt-0.5 text-gray-500">Código de ingeniería enfocado a la alta rentabilidad y optimización comercial.</p>
             </div>
             <div class="text-center sm:text-right">
                 <span class="text-brand-orange font-bold text-sm tracking-wide">VIBRAS POSITIVAS HM</span>
@@ -269,7 +239,13 @@
     </footer>
 
     <script>
-        // Cambiar pestañas de herramientas
+        // Arreglo maestro de platos por defecto
+        let platosMuestra = [
+            { nombre: "Pargo Rojo Especial", costo: 14000, venta: 45000 },
+            { nombre: "Hamburguesa Artesanal Premium", costo: 9500, venta: 28000 },
+            { nombre: "Filete de Pollo Gratinado", costo: 7800, venta: 21000 }
+        ];
+
         function switchTab(tabId) {
             document.querySelectorAll('.tabs-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -280,46 +256,151 @@
             document.getElementById(`btn-${tabId}`).classList.add('border-brand-orange', 'text-brand-orange');
         }
 
-        // CÁCULO DE HERRAMIENTA 1: Matriz de Costos Mensuales
-        function calcularMatrizCostos() {
-            const ventas = parseFloat(document.getElementById('est-ventas').value) || 0;
-            const cmv = parseFloat(document.getElementById('est-cmv').value) || 0;
-            const nomina = parseFloat(document.getElementById('est-nomina').value) || 0;
-            const arriendo = parseFloat(document.getElementById('est-arriendo').value) || 0;
-            const servicios = parseFloat(document.getElementById('est-servicios').value) || 0;
-            const marketing = parseFloat(document.getElementById('est-marketing').value) || 0;
-            const mantenimiento = parseFloat(document.getElementById('est-mantenimiento').value) || 0;
-            const otros = parseFloat(document.getElementById('est-otros').value) || 0;
-
-            if (ventas === 0) return;
-
-            const pCmv = (cmv / ventas) * 100;
-            const pNomina = (nomina / ventas) * 100;
-            const pArriendo = (arriendo / ventas) * 100;
-            const pServicios = (servicios / ventas) * 100;
-            const pMarketing = (marketing / ventas) * 100;
-            const pMantenimiento = (mantenimiento / ventas) * 100;
-            const pOtros = (otros / ventas) * 100;
-
-            const totalGastos = cmv + nomina + arriendo + servicios + marketing + mantenimiento + otros;
-            const utilidadDinero = ventas - totalGastos;
-            const pUtilidad = (utilidadDinero / ventas) * 100;
-
-            document.getElementById('out-pct-cmv').innerText = `${pCmv.toFixed(2)}%`;
-            document.getElementById('out-pct-nomina').innerText = `${pNomina.toFixed(2)}%`;
-            document.getElementById('out-pct-arriendo').innerText = `${pArriendo.toFixed(2)}%`;
-            document.getElementById('out-pct-servicios').innerText = `${pServicios.toFixed(2)}%`;
-            document.getElementById('out-pct-marketing').innerText = `${pMarketing.toFixed(2)}%`;
-            document.getElementById('out-pct-mantenimiento').innerText = `${pMantenimiento.toFixed(2)}%`;
-            document.getElementById('out-pct-otros').innerText = `${pOtros.toFixed(2)}%`;
-
-            const fmt = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
-            const outUt = document.getElementById('out-utilidad-total');
-            outUt.innerText = `${fmt.format(utilidadDinero)} (${pUtilidad.toFixed(2)}%)`;
-            outUt.className = utilidadDinero < 0 ? "text-xl font-black block mt-1 text-red-500" : "text-xl font-black block mt-1 text-emerald-400";
+        function obtenerSedeKey() {
+            return `vp_gastro_data_${document.getElementById('global-ciudad').value}`;
         }
 
-        // CÁLCULO DE HERRAMIENTA 2: Auditor de Inventarios (Fórmula de la Guía)
+        // CONTROL CENTRALIZADO DE CÁLCULOS
+        function calcularTodo() {
+            let ventasBase = parseFloat(document.getElementById('est-ventas').value) || 0;
+            let cmv = parseFloat(document.getElementById('est-cmv').value) || 0;
+            let nomina = parseFloat(document.getElementById('est-nomina').value) || 0;
+            let arriendo = parseFloat(document.getElementById('est-arriendo').value) || 0;
+            let servicios = parseFloat(document.getElementById('est-servicios').value) || 0;
+            let marketing = parseFloat(document.getElementById('est-marketing').value) || 0;
+            let mantenimiento = parseFloat(document.getElementById('est-mantenimiento').value) || 0;
+            let otros = parseFloat(document.getElementById('est-otros').value) || 0;
+
+            // Leer variables del simulador comercial (Pilares)
+            let pilar1 = parseFloat(document.getElementById('slide-pilar1').value) || 0;
+            let pilar2 = parseFloat(document.getElementById('slide-pilar2').value) || 0;
+            
+            document.getElementById('val-pilar1').innerText = `+${pilar1}%`;
+            document.getElementById('val-pilar2').innerText = `+${pilar2}%`;
+
+            // Calcular ventas proyectadas compuestas
+            let factorCrecimiento = (1 + (pilar1 / 100)) * (1 + (pilar2 / 100));
+            let ventasProyectadas = ventasBase * factorCrecimiento;
+
+            // Ajustar costos variables en función del nuevo volumen de ventas simulado
+            let nuevoCmv = cmv * factorCrecimiento;
+
+            let totalGastos = nuevoCmv + nomina + arriendo + servicios + marketing + mantenimiento + otros;
+            let utilidadDinero = ventasProyectadas - totalGastos;
+            let pctUtilidad = ventasProyectadas > 0 ? (utilidadDinero / ventasProyectadas) * 100 : 0;
+
+            // Renderizar porcentajes relativos en base a las nuevas ventas proyectadas
+            document.getElementById('out-pct-cmv').innerText = `${((nuevoCmv/ventasProyectadas)*100).toFixed(2)}%`;
+            document.getElementById('out-pct-nomina').innerText = `${((nomina/ventasProyectadas)*100).toFixed(2)}%`;
+            document.getElementById('out-pct-arriendo').innerText = `${((arriendo/ventasProyectadas)*100).toFixed(2)}%`;
+            document.getElementById('out-pct-servicios').innerText = `${((servicios/ventasProyectadas)*100).toFixed(2)}%`;
+
+            // Formatear monedas
+            const fmt = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+            document.getElementById('out-base-v').innerText = fmt.format(ventasBase);
+            document.getElementById('out-proj-v').innerText = fmt.format(ventasProyectadas);
+            
+            const outUt = document.getElementById('out-utilidad-total');
+            outUt.innerText = `${fmt.format(utilidadDinero)} (${pctUtilidad.toFixed(2)}%)`;
+            outUt.className = utilidadDinero < 0 ? "text-2xl font-black block mt-1 text-red-500" : "text-2xl font-black block mt-1 text-emerald-400";
+        }
+
+        // GESTIÓN DINÁMICA DE PLATOS (AÑADIR, EDITAR, ELIMINAR)
+        function renderizarPlatos() {
+            const contenedor = document.getElementById('lista-platos');
+            contenedor.innerHTML = '';
+            
+            let key = `${obtenerSedeKey()}_platos`;
+            let platos = JSON.parse(localStorage.getItem(key)) || platosMuestra;
+
+            platos.forEach((plato, index) => {
+                let margenDinero = plato.venta - plato.costo;
+                let pctMargen = plato.venta > 0 ? (margenDinero / plato.venta) * 100 : 0;
+                
+                let colorAlerta = pctMargen < 65 ? 'border-amber-300 bg-amber-50/40 text-amber-900' : 'border-emerald-200 bg-emerald-50/30 text-emerald-950';
+                let tagAlerta = pctMargen < 65 ? '⚠️ Margen < 65%' : '✅ Óptimo';
+
+                const fmt = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+
+                contenedor.innerHTML += `
+                    <div class="p-4 border rounded-xl shadow-sm space-y-2 flex flex-col justify-between ${colorAlerta}">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <h4 class="font-bold text-sm text-brand-dark">${plato.nombre}</h4>
+                                <span class="text-[10px] font-bold px-1.5 py-0.5 rounded ${pctMargen < 65 ? 'bg-amber-100 text-amber-800' : 'bg-emerald-100 text-emerald-800'}">${tagAlerta}</span>
+                            </div>
+                            <div class="text-xs space-y-1 mt-2 text-gray-600">
+                                <div class="flex justify-between"><span>Costo de Receta:</span> <span class="font-medium">${fmt.format(plato.costo)}</span></div>
+                                <div class="flex justify-between"><span>Precio Venta Público:</span> <span class="font-medium">${fmt.format(plato.venta)}</span></div>
+                                <div class="flex justify-between border-t pt-1 font-bold text-brand-dark"><span>Margen (%):</span> <span>${pctMargen.toFixed(1)}%</span></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-end gap-1 pt-3 border-t mt-2 text-[11px] font-bold">
+                            <button onclick="editarPlato(${index})" class="text-brand-orange bg-white border border-amber-200 px-2 py-1 rounded hover:bg-amber-50">Editar</button>
+                            <button onclick="eliminarPlato(${index})" class="text-red-600 bg-white border border-red-100 px-2 py-1 rounded hover:bg-red-50">Borrar</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function abrirModalPlato() {
+            document.getElementById('plato-index').value = "-1";
+            document.getElementById('modal-titulo').innerText = "➕ Añadir Nuevo Plato";
+            document.getElementById('plato-nombre').value = "";
+            document.getElementById('plato-costo').value = "";
+            document.getElementById('plato-venta').value = "";
+            document.getElementById('modal-plato').classList.remove('hidden');
+        }
+
+        function cerrarModalPlato() {
+            document.getElementById('modal-plato').classList.add('hidden');
+        }
+
+        function guardarPlatoDinamico() {
+            let index = parseInt(document.getElementById('plato-index').value);
+            let nombre = document.getElementById('plato-nombre').value.trim() || 'Plato Nuevo';
+            let costo = parseFloat(document.getElementById('plato-costo').value) || 0;
+            let venta = parseFloat(document.getElementById('plato-venta').value) || 0;
+
+            let key = `${obtenerSedeKey()}_platos`;
+            let platos = JSON.parse(localStorage.getItem(key)) || platosMuestra;
+
+            if (index === -1) {
+                platos.push({ nombre, costo, venta });
+            } else {
+                platos[index] = { nombre, costo, venta };
+            }
+
+            localStorage.setItem(key, JSON.stringify(platos));
+            cerrarModalPlato();
+            renderizarPlatos();
+        }
+
+        function editarPlato(index) {
+            let key = `${obtenerSedeKey()}_platos`;
+            let platos = JSON.parse(localStorage.getItem(key)) || platosMuestra;
+            let plato = platos[index];
+
+            document.getElementById('plato-index').value = index;
+            document.getElementById('modal-titulo').innerText = "📝 Editar Ficha de Plato";
+            document.getElementById('plato-nombre').value = plato.nombre;
+            document.getElementById('plato-costo').value = plato.costo;
+            document.getElementById('plato-venta').value = plato.venta;
+            document.getElementById('modal-plato').classList.remove('hidden');
+        }
+
+        function eliminarPlato(index) {
+            if (confirm('¿Deseas dar de baja este plato del menú de la ciudad?')) {
+                let key = `${obtenerSedeKey()}_platos`;
+                let platos = JSON.parse(localStorage.getItem(key)) || platosMuestra;
+                platos.splice(index, 1);
+                localStorage.setItem(key, JSON.stringify(platos));
+                renderizarPlatos();
+            }
+        }
+
+        // CÁLCULO DE HERRAMIENTA 3: Auditor de Inventarios (Fórmula Pág. 4)
         function ejecutarAuditoriaCMV() {
             const ventas = parseFloat(document.getElementById('cmv-ventas').value) || 0;
             const inicial = parseFloat(document.getElementById('cmv-inicial').value) || 0;
@@ -331,143 +412,76 @@
 
             if(ventas === 0) return;
             const pctReal = (consumoMercancia / ventas) * 100;
-            document.getElementById('out-cmv-pct-real').innerText = `${pctReal.toFixed(2)}%`;
+            const outPct = document.getElementById('out-cmv-pct-real');
+            outPct.innerText = `${pctReal.toFixed(2)}%`;
 
             const alertBox = document.getElementById('cmv-alert-box');
             if (pctReal > 35) {
+                outPct.className = "text-red-600 font-black";
                 alertBox.className = "p-4 rounded-lg text-xs mt-4 bg-red-50 text-red-800 border border-red-200 font-medium";
-                alertBox.innerHTML = `<strong>🚨 Alerta Crítica (CMV Alto):</strong> Tu costo real del <strong>${pctReal.toFixed(2)}%</strong> excede el límite del 35%. Revisa inmediatamente pérdidas en transformación, errores en recetas o robos en cocina (Pág. 4).`;
+                alertBox.innerHTML = `<strong>🚨 Alerta de Desvío (CMV > 35%):</strong> Tu costo real del <strong>${pctReal.toFixed(2)}%</strong> excede los límites saludables de la guía. Revisa inmediatamente mermas o fugas en bodega (Pág. 4).`;
             } else {
+                outPct.className = "text-emerald-600 font-black";
                 alertBox.className = "p-4 rounded-lg text-xs mt-4 bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium";
-                alertBox.innerHTML = `<strong>✅ Margen Saludable:</strong> El costo de stock se encuentra controlado por debajo de la barrera recomendada de la industria gastronómica.`;
+                alertBox.innerHTML = `<strong>✅ Stock Eficiente:</strong> Felicitaciones, el costo de materia prima consumida está dentro de la meta industrial.`;
             }
         }
 
-        // CÁLCULO DE HERRAMIENTA 3: Ingeniería de Menú (Margen del 65%)
-        function calcularMargenPlato() {
-            const costo = parseFloat(document.getElementById('plt-costo').value) || 0;
-            const venta = parseFloat(document.getElementById('plt-venta').value) || 0;
-
-            const margenDinero = venta - costo;
-            const pctMargen = venta > 0 ? (margenDinero / venta) * 100 : 0;
-
-            const fmt = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
-            document.getElementById('out-plt-dinero').innerText = fmt.format(margenDinero);
-            document.getElementById('out-plt-pct').innerText = `${pctMargen.toFixed(2)}%`;
-
-            const alertBox = document.getElementById('plt-alert-box');
-            if (pctMargen < 65) {
-                alertBox.className = "p-4 rounded-lg text-xs mt-4 bg-amber-50 text-amber-800 border border-amber-200";
-                alertBox.innerHTML = `<strong>⚠️ Ajustar Ficha Técnica:</strong> El margen es del <strong>${pctMargen.toFixed(2)}%</strong>. La guía recomienda un promedio mayor al 65%. Considera renegociar costos de insumos con proveedores o reajustar las porciones proteicas del plato sin alterar la percepción de valor del cliente.`;
-            } else {
-                alertBox.className = "p-4 rounded-lg text-xs mt-4 bg-emerald-50 text-emerald-800 border border-emerald-200";
-                alertBox.innerHTML = `<strong>✨ Plato Rentable:</strong> Este producto cumple con los criterios de alta rentabilidad y ayuda a subsidiar platos con márgenes más ajustados.`;
-            }
-        }
-
-        // PERSISTENCIA MULTI-SEDE MEDIANTE LOCALSTORAGE
-        function obtenerKeySede() {
-            const sede = document.getElementById('global-ciudad').value;
-            return `vp_gastro_datos_${sede}`;
-        }
-
-        function guardarDatosSede() {
-            const datos = {
-                ventas: document.getElementById('est-ventas').value,
-                cmv: document.getElementById('est-cmv').value,
-                nomina: document.getElementById('est-nomina').value,
-                arriendo: document.getElementById('est-arriendo').value,
-                servicios: document.getElementById('est-servicios').value,
-                marketing: document.getElementById('est-marketing').value,
-                mantenimiento: document.getElementById('est-mantenimiento').value,
-                otros: document.getElementById('est-otros').value
-            };
-            localStorage.setItem(obtenerKeySede(), JSON.stringify(datos));
-            alert(`¡Cifras de la sede ${document.getElementById('global-ciudad').value.toUpperCase()} guardadas con éxito!`);
-        }
-
-        function cargarDatosSede() {
-            const guardados = localStorage.getItem(obtenerKeySede());
+        // PERSISTENCIA Y CAMBIO DE SEDE
+        function cambiarSedeGlobal() {
+            const guardados = localStorage.getItem(obtenerSedeKey());
             if (guardados) {
-                const datos = JSON.parse(guardados);
-                document.getElementById('est-ventas').value = datos.ventas;
-                document.getElementById('est-cmv').value = datos.cmv;
-                document.getElementById('est-nomina').value = datos.nomina;
-                document.getElementById('est-arriendo').value = datos.arriendo;
-                document.getElementById('est-servicios').value = datos.servicios;
-                document.getElementById('est-marketing').value = datos.marketing;
-                document.getElementById('est-mantenimiento').value = datos.mantenimiento;
-                document.getElementById('est-otros').value = datos.otros;
+                const d = JSON.parse(guardados);
+                document.getElementById('est-ventas').value = d.ventas;
+                document.getElementById('est-cmv').value = d.cmv;
+                document.getElementById('est-nomina').value = d.nomina;
+                document.getElementById('est-arriendo').value = d.arriendo;
+                document.getElementById('est-servicios').value = d.servicios;
+                document.getElementById('est-marketing').value = d.marketing;
             } else {
-                // Valores iniciales limpios por defecto
+                // Valores estándar por defecto
                 document.getElementById('est-ventas').value = "80000000";
                 document.getElementById('est-cmv').value = "31000000";
                 document.getElementById('est-nomina').value = "22400000";
                 document.getElementById('est-arriendo').value = "8000000";
-                document.getElementById('est-servicios').value = "3200000";
-                document.getElementById('est-marketing').value = "2400000";
-                document.getElementById('est-mantenimiento').value = "800000";
-                document.getElementById('est-otros').value = "9700000";
             }
-            calcularMatrizCostos();
+            // Resetear barras de simulación al cambiar de ciudad
+            document.getElementById('slide-pilar1').value = 0;
+            document.getElementById('slide-pilar2').value = 0;
+            
+            calcularTodo();
+            renderizarPlatos();
+            loadChecklist();
         }
 
-        // CONTROL DEL CHECKLIST DE AUDITORÍA DE PROCESOS
         function saveChecklist() {
             const chkState = [];
-            for (let i = 0; i <= 6; i++) {
+            for (let i = 0; i <= 2; i++) {
                 const el = document.getElementById(`chk-${i}`);
                 if(el) chkState.push({ id: i, checked: el.checked });
             }
             localStorage.setItem(`vp_gastro_chk_${document.getElementById('global-ciudad').value}`, JSON.stringify(chkState));
-            alert('¡Progreso de auditoría operativa guardado!');
+            alert('¡Checklist guardado!');
         }
 
         function loadChecklist() {
             const saved = localStorage.getItem(`vp_gastro_chk_${document.getElementById('global-ciudad').value}`);
+            for (let i = 0; i <= 2; i++) {
+                const el = document.getElementById(`chk-${i}`);
+                if (el) el.checked = false;
+            }
             if (saved) {
-                const states = JSON.parse(saved);
-                states.forEach(item => {
+                JSON.parse(saved).forEach(item => {
                     const el = document.getElementById(`chk-${item.id}`);
                     if (el) el.checked = item.checked;
                 });
-            } else {
-                for (let i = 0; i <= 6; i++) {
-                    const el = document.getElementById(`chk-${i}`);
-                    if (el) el.checked = false;
-                }
             }
         }
 
-        // Registro de Service Worker para capacidades de ejecución Offline
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                const swCode = `
-                    const CACHE = 'vp-gastro-v2';
-                    self.addEventListener('install', e => {
-                        e.waitUntil(caches.open(CACHE).then(c => c.addAll([location.href])));
-                    });
-                    self.addEventListener('fetch', e => {
-                        e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
-                    });
-                `;
-                const blob = new Blob([swCode], { type: 'application/javascript' });
-                navigator.serviceWorker.register(URL.createObjectURL(blob));
-            });
-        }
-
-        // Inicialización coordinada al cargar el DOM
+        // INICIALIZACIÓN
         window.addEventListener('DOMContentLoaded', () => {
-            cargarDatosSede();
+            cambiarSedeGlobal();
             ejecutarAuditoriaCMV();
-            calcularMargenPlato();
-            loadChecklist();
-            
-            // Vincular recarga del checklist al cambiar el selector de ciudad
-            const selector = document.getElementById('global-ciudad');
-            selector.addEventListener('change', () => {
-                loadChecklist();
-            });
         });
     </script>
 </body>
