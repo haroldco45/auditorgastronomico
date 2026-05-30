@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auditor de Rentabilidad Gastronómica - Vibras Positivas</title>
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkF1ZGl0b3IgZGUgUmVudGFiaWxpZGFkIEdhc3Ryb27Ds21pY2EiLAogICJzaG9ydF9uYW1lIjogIkF1ZGl0b3JHYXN0cm8iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y4ZmFmYyIsCiAgInRoZW1lX2NvbG9yIjogIiNkOTc3MDYiLAogICJpY29ucyI6IFsKICAgIHsKICAgICAgInNyYyI6ICJkYXRhOmltYWdlL3N2Zyt4bWw7YmFzZTY0LFBITjRkeUI0YUhSMWNEb3ZMM2QzZHk1M015NXZjbWN2TWpBeE1DOWpZVzVuYldVK1BDOXpkbWMrIiwKICAgICAgInNpemVzIjogIjUxMng1MTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9zdmcreG1sIgogICAgfQogIF0KfQ==">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#D97706',
+                            dark: '#1E293B',
+                            light: '#F8FAFC'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .tabs-content { display: none; }
+        .tabs-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark font-sans flex flex-col min-h-screen">
+
+    <header class="bg-brand-dark text-white p-4 shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-brand-orange text-white p-2 rounded-lg font-bold text-xl">VP</div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight">Estrategia de Rentabilidad Gastronómica</h1>
+                    <p class="text-xs text-gray-400">Herramienta de Diagnóstico Basada en Datos Reales</p>
+                </div>
+            </div>
+            <button id="installPwa" class="hidden bg-brand-orange hover:bg-amber-600 text-white font-semibold text-sm py-2 px-4 rounded-lg transition-colors shadow">
+                Instalar Aplicación App
+            </button>
+        </div>
+    </header>
+
+    <nav class="bg-white border-b border-gray-200 sticky top-[72px] sm:top-[64px] z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto flex overflow-x-auto">
+            <button onclick="switchTab('dashboard')" id="btn-dashboard" class="tab-btn px-6 py-3 text-sm font-medium border-b-2 border-brand-orange text-brand-orange whitespace-nowrap">
+                Análisis Financiero (Histórico)
+            </button>
+            <button onclick="switchTab('guia')" id="btn-guia" class="tab-btn px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">
+                Guía y Auditoría de Procesos
+            </button>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6">
+        
+        <section id="dashboard" class="tabs-content active space-y-6">
+            <div class="bg-amber-50 border-l-4 border-brand-orange p-4 rounded-r-lg">
+                <h3 class="font-bold text-amber-900 text-sm sm:text-base">Análisis de la Estructura de Costos Histórica</h3>
+                <p class="text-xs sm:text-sm text-amber-800 mt-1">Los siguientes datos corresponden a los registros financieros de los últimos 3 meses extraídos del sistema. Compáralos contra los estándares de la industria gastronómica para identificar fugas de capital.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-bold text-lg text-brand-dark">Mes 1</h4>
+                            <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-1 rounded">Utilidad Positiva</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between border-b pb-1 font-semibold text-gray-600"><span>Ventas Netas:</span> <span>$80.000.000</span></div>
+                            <div class="flex justify-between border-b pb-1 text-red-600 font-medium"><span>CMV Real:</span> <span>$31.000.000 (38.75%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Mano de Obra:</span> <span>$22.400.000 (28.00%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Arriendo:</span> <span>$8.000.000 (10.00%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Servicios públicos:</span> <span>$3.200.000 (4.00%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Marketing:</span> <span>$2.400.000 (3.00%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Mantenimiento:</span> <span>$800.000 (1.00%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Otros Gastos:</span> <span>$9.700.000 (12.13%)</span></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t bg-gray-50 p-2 rounded flex justify-between font-bold text-brand-dark">
+                        <span>UTILIDAD BRUTA:</span>
+                        <span class="text-emerald-600">$2.500.000 (3.13%)</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-bold text-lg text-brand-dark">Mes 2</h4>
+                            <span class="bg-emerald-100 text-emerald-800 text-xs font-semibold px-2 py-1 rounded">Utilidad Positiva</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between border-b pb-1 font-semibold text-gray-600"><span>Ventas Netas:</span> <span>$83.200.000</span></div>
+                            <div class="flex justify-between border-b pb-1 text-red-600 font-medium"><span>CMV Real:</span> <span>$35.500.000 (42.67%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Mano de Obra:</span> <span>$23.200.000 (27.88%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Arriendo:</span> <span>$8.000.000 (9.62%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Servicios públicos:</span> <span>$3.000.000 (3.61%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Marketing:</span> <span>$3.500.000 (4.21%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Mantenimiento:</span> <span>$200.000 (0.24%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Otros Gastos:</span> <span>$8.000.000 (9.62%)</span></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t bg-gray-50 p-2 rounded flex justify-between font-bold text-brand-dark">
+                        <span>UTILIDAD BRUTA:</span>
+                        <span class="text-emerald-600">$1.800.000 (2.16%)</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl shadow-sm border border-red-200 flex flex-col justify-between ring-2 ring-red-500/20">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h4 class="font-bold text-lg text-brand-dark">Mes 3</h4>
+                            <span class="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">DÉFICIT / PÉRDIDA</span>
+                        </div>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between border-b pb-1 font-semibold text-gray-600"><span>Ventas Netas:</span> <span>$79.800.000</span></div>
+                            <div class="flex justify-between border-b pb-1 text-red-600 font-bold"><span>CMV Real:</span> <span>$37.500.000 (46.99%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Mano de Obra:</span> <span>$23.600.000 (29.57%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Arriendo:</span> <span>$8.000.000 (10.03%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Servicios públicos:</span> <span>$3.600.000 (4.51%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Marketing:</span> <span>$2.000.000 (2.51%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Mantenimiento:</span> <span>$800.000 (1.00%)</span></div>
+                            <div class="flex justify-between border-b pb-1"><span>Otros Gastos:</span> <span>$9.000.000 (11.28%)</span></div>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t bg-red-50 p-2 rounded flex justify-between font-bold text-brand-dark">
+                        <span>UTILIDAD BRUTA:</span>
+                        <span class="text-red-600">-$4.700.000 (-5.89%)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
+                <h3 class="font-bold text-lg mb-4 text-brand-dark flex items-center gap-2">
+                    📊 Rangos de Referencia Objetivo por Formato de Negocio
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 font-semibold text-gray-700">
+                                <th class="p-3 border-b">Concepto / Costo</th>
+                                <th class="p-3 border-b text-brand-orange">Tu Mes 3 (Alerta)</th>
+                                <th class="p-3 border-b">Comida Rápida</th>
+                                <th class="p-3 border-b">Casual</th>
+                                <th class="p-3 border-b">Fine Dining</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr><td class="p-3 font-medium">Costo Mercancía (CMV)</td><td class="p-3 text-red-600 font-bold bg-red-50">46.99%</td><td class="p-3">38.00%</td><td class="p-3">34.00%</td><td class="p-3">30.00%</td></tr>
+                            <tr><td class="p-3 font-medium">Mano de Obra</td><td class="p-3 text-red-600 bg-red-50">29.57%</td><td class="p-3">16.00%</td><td class="p-3">18.00%</td><td class="p-3">24.00%</td></tr>
+                            <tr><td class="p-3 font-medium">Arriendo</td><td class="p-3 bg-red-50">10.03%</td><td class="p-3">8.00%</td><td class="p-3">9.00%</td><td class="p-3">10.00%</td></tr>
+                            <tr><td class="p-3 font-medium">Servicios Públicos</td><td class="p-3 bg-red-50">4.51%</td><td class="p-3">5.00%</td><td class="p-3">5.00%</td><td class="p-3">5.00%</td></tr>
+                            <tr><td class="p-3 font-medium">Marketing y Publicidad</td><td class="p-3 bg-red-50">2.51%</td><td class="p-3">5.00%</td><td class="p-3">5.00%</td><td class="p-3">5.00%</td></tr>
+                            <tr><td class="p-3 font-medium">Reparación y Mantenimiento</td><td class="p-3 bg-red-50">1.00%</td><td class="p-3">1.00%</td><td class="p-3">1.00%</td><td class="p-3">1.00%</td></tr>
+                            <tr><td class="p-3 font-medium">Otros Gastos</td><td class="p-3 bg-red-50">11.28%</td><td class="p-3">15.00%</td><td class="p-3">15.00%</td><td class="p-3">11.00%</td></tr>
+                            <tr class="bg-amber-50/50 font-bold"><td class="p-3">Margen Utilidad Objetivo</td><td class="p-3 text-red-600 font-extrabold">-5.89%</td><td class="p-3 text-emerald-700">12.00%</td><td class="p-3 text-emerald-700">13.00%</td><td class="p-3 text-emerald-700">14.00%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 p-4 bg-red-50 rounded-lg text-xs text-red-800 space-y-1">
+                    <p class="font-bold">🚨 Conclusión Crítica de Diagnóstico Financiero:</p>
+                    <p>El restaurante experimenta una caída en la utilidad neta debido principalmente al <strong>aumento sostenido del CMV (del 38.75% al 46.99%)</strong>, excediendo gravemente el límite prudencial del <strong>35%</strong>. Paralelamente, los costos de <strong>Mano de Obra (29.57%)</strong> están desalineados para operaciones de formato rápido o casual.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="guia" class="tabs-content space-y-6">
+            <div class="bg-white p-4 sm:p-6 rounded-xl shadow-sm border border-gray-200">
+                <h2 class="text-xl font-bold text-brand-dark mb-2">📋 Auditoría Diagnóstica del Negocio Gastronómico</h2>
+                <p class="text-sm text-gray-600 mb-6">Utiliza este cuestionario dinámico basado en las directrices completas del documento para identificar fallas en tus operaciones comerciales, nóminas y control de stock.</p>
+                
+                <div class="space-y-6">
+                    <div class="border rounded-xl p-4 bg-slate-50/50">
+                        <h3 class="font-bold text-base text-brand-orange border-b pb-2 mb-3">1. Gestión de Costo de Mercancía Vendida (CMV Real vs. Teórico)</h3>
+                        <p class="text-xs text-gray-500 mb-4">El CMV Real se rige bajo la fórmula: <code>(Inventario Inicial + Compras - Inventario Final) / Ventas Netas</code>. Si supera el 35%, evalúa lo siguiente:</p>
+                        
+                        <div class="space-y-3">
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Se calcula el CMV Real de forma periódica?</strong>
+                                    <p class="text-xs text-gray-500">No confiarse únicamente en el costo teórico de recetas; hay que cuantificar mermas, robos y errores de almacenamiento.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Los márgenes de utilidad promedio de los platos superan el 65%?</strong>
+                                    <p class="text-xs text-gray-500">De no ser así, es obligatorio indexar precios fijándose en el mercado o disminuir la carga de insumos de alto coste (ej. proteínas masivas).</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿El sistema POS se encuentra parametrizado y actualizado en tiempo real?</strong>
+                                    <p class="text-xs text-gray-500">Debe registrar compras ingresadas de inmediato, ventas netas y bajas autorizadas por concepto de merma o devolución.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Se ejecutan conteos físicos con frecuencias estandarizadas (diario, semanal, quincenal)?</strong>
+                                    <p class="text-xs text-gray-500">Cruzar los inventarios físicos contra el reporte teórico generado por el POS para auditar diferencias críticas inmediatamente.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Existen horarios específicos de recepción de insumos fuera de las horas pico de comensales?</strong>
+                                    <p class="text-xs text-gray-500">Evita el sobreaprovisionamiento y exige pesar, contar y validar de forma estricta cada orden frente a la factura del proveedor.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Se implementa rigurosamente el método PEPS / FIFO en cocinas y bodegas?</strong>
+                                    <p class="text-xs text-gray-500">"Primero en Entrar, Primero en Salir". Todo insumo procesado debe portar etiquetas de caducidad y fichas técnicas de rendimiento.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="border rounded-xl p-4 bg-slate-50/50">
+                        <h3 class="font-bold text-base text-brand-orange border-b pb-2 mb-3">2. Optimización del Capital Humano y Nómina</h3>
+                        
+                        <div class="space-y-3">
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿La planeación horaria se distribuye con base en la demanda de días pico?</strong>
+                                    <p class="text-xs text-gray-500">Evitar exceso de personal en días de baja afluencia (lunes/martes). Mitigar recargos dominicales y horas extra innecesarias.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Posees un organigrama claro con manuales de perfil de cargo y competencias bien definidas?</strong>
+                                    <p class="text-xs text-gray-500">La falta de claridad en reclutamiento acelera los índices de rotación laboral debido a contrataciones apresuradas o perfiles inadecuados.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿El proceso de inducción contempla el acompañamiento guiado inicial?</strong>
+                                    <p class="text-xs text-gray-500">Dotar al colaborador de lineamientos operativos claros, contexto de marca y escucha activa continua para fidelizar el talento humano.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Se justifica financieramente la operación de un Centro de Producción / Cocina Oculta?</strong>
+                                    <p class="text-xs text-gray-500">Si tu volumen de venta actual en salones no mitiga los costos fijos administrativos del centro, dicha inversión es prematura y drena el flujo de caja.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="border rounded-xl p-4 bg-slate-50/50">
+                        <h3 class="font-bold text-base text-brand-orange border-b pb-2 mb-3">3. Activación Comercial, Retención y Ticket Promedio</h3>
+                        
+                        <div class="space-y-3">
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿La marca cuenta con una narrativa, propósito y público objetivo claramente establecidos?</strong>
+                                    <p class="text-xs text-gray-500">Una propuesta indiferenciada reduce las tasas de adquisición de nuevos clientes. Es crucial estructurar relatos auténticos de marca.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Inviertes con regularidad en estrategias comerciales proactivas y reconocimiento de marca?</strong>
+                                    <p class="text-xs text-gray-500">Ejecutar pauta digital, colaboraciones estratégicas, relaciones públicas y generación activa de contenido relevante en redes sociales.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Monitoreas la reputación digital en plataformas de opinión (Google Business, TripAdvisor)?</strong>
+                                    <p class="text-xs text-gray-500">Calificaciones deficientes o reseñas negativas sin atender ahuyentan el tráfico de nuevos clientes potenciales.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿El equipo de servicio domina protocolos mediante herramientas como el Customer Journey Map?</strong>
+                                    <p class="text-xs text-gray-500">Los meseros deben estar entrenados para recomendar productos, ofrecer entradas atractivas, postres o bebidas especiales para inflar el consumo.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Se han implementado esquemas de bonificación por metas de venta para los meseros?</strong>
+                                    <p class="text-xs text-gray-500">El personal motivado se asocia con los objetivos de rentabilidad incrementando proactivamente el ticket promedio en mesa.</p>
+                                </div>
+                            </label>
+                            <label class="flex items-start gap-3 p-2 bg-white rounded border hover:bg-gray-50 cursor-pointer text-sm">
+                                <input type="checkbox" class="mt-1 rounded border-gray-300 text-brand-orange focus:ring-brand-orange">
+                                <div>
+                                    <strong>¿Cuentas con bases de datos automatizadas (WhatsApp / Email Marketing) para acelerar la recompra?</strong>
+                                    <p class="text-xs text-gray-500">No esperes a que el cliente decida regresar. Lanza campañas con límites de tiempo, festejos de cumpleaños automatizados o eventos exclusivos.</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex justify-end">
+                    <button onclick="saveChecklist()" class="bg-brand-dark text-white font-semibold py-2 px-6 rounded-lg text-sm hover:bg-slate-800 transition shadow">
+                        Guardar Estado de Diagnóstico
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-brand-dark text-gray-400 text-xs py-6 mt-12 border-t border-slate-700
