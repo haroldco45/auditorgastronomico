@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculador Dinámico de Rentabilidad - Vibras Positivas</title>
-    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkF1ZGl0b3IgZGUgUmVudGFiaWxpZGFkIEdhc3Ryb27Ds21pY2EiLAogICJzaG9ydF9uYW1lIjogIkF1ZGl0b3JHYXN0cm8iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJfY29sb3IiOiAiI2Y4ZmFmYyIsCiAgInRoZW1lX2NvbG9yIjogIiNkOTc3MDYiCiB9">
+    <title>Auditor Maestro de Rentabilidad Gastronómica - Vibras Positivas</title>
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkF1ZGl0b3IgTWFlc3RybyBkZSBSZW50YWJpbGlkYWQiLAogICJzaG9ydF9uYW1lIjogIkF1ZGl0b3JHYXN0cm8iLAogICJzdGFydF91cmwiOiAiLiIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiI2Y4ZmFmYyIsCiAgInRoZW1lX2NvbG9yIjogIiNkOTc3MDYiCiB9">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -30,193 +30,246 @@
                 <div class="bg-brand-orange text-white p-2 rounded-lg font-bold text-xl">VP</div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight">Estrategia de Rentabilidad Gastronómica</h1>
-                    <p class="text-xs text-gray-400">Simulador Financiero Interactivo e Inserción de Datos</p>
+                    <p class="text-xs text-gray-400">Plataforma Integral de Herramientas y Gestión de Sedes</p>
                 </div>
+            </div>
+            <div class="flex items-center gap-2 bg-slate-800 p-2 rounded-lg border border-slate-700 w-full sm:w-auto">
+                <label class="text-xs font-bold text-gray-400 uppercase whitespace-nowrap">📍 Sede Ciudad:</label>
+                <select id="global-ciudad" onchange="cargarDatosSede()" class="bg-brand-dark text-white text-sm font-semibold rounded p-1 focus:outline-none w-full">
+                    <option value="caucasia">Caucasia</option>
+                    <option value="medellin">Medellín</option>
+                    <option value="monteria">Montería</option>
+                    <option value="apartado">Apartadó</option>
+                </select>
             </div>
         </div>
     </header>
 
-    <nav class="bg-white border-b border-gray-200 sticky top-[64px] z-40 shadow-sm">
-        <div class="max-w-7xl mx-auto flex">
-            <button onclick="switchTab('calculadora')" id="btn-calculadora" class="tab-btn px-6 py-3 text-sm font-medium border-b-2 border-brand-orange text-brand-orange whitespace-nowrap">
-                📥 Meter Mis Datos Reales
-            </button>
-            <button onclick="switchTab('guia')" id="btn-guia" class="tab-btn px-6 py-3 text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">
-                📋 Auditoría de Procesos
-            </button>
+    <nav class="bg-white border-b border-gray-200 sticky top-[130px] sm:top-[73px] z-40 shadow-sm overflow-x-auto flex">
+        <div class="max-w-7xl mx-auto flex w-full">
+            <button onclick="switchTab('p-estructura')" id="btn-p-estructura" class="tab-btn px-5 py-3 text-xs sm:text-sm font-bold border-b-2 border-brand-orange text-brand-orange whitespace-nowrap">📉 1. Estructura Financiera</button>
+            <button onclick="switchTab('p-cmv')" id="btn-p-cmv" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">🥩 2. Calculadora CMV Real</button>
+            <button onclick="switchTab('p-platos')" id="btn-p-platos" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">🍔 3. Margen de Platos</button>
+            <button onclick="switchTab('p-auditoria')" id="btn-p-auditoria" class="tab-btn px-5 py-3 text-xs sm:text-sm font-medium border-b-2 border-transparent text-gray-500 hover:text-brand-dark whitespace-nowrap">📋 4. Auditoría Operativa</button>
         </div>
     </nav>
 
     <main class="flex-grow max-w-7xl w-full mx-auto p-4 sm:p-6">
-        
-        <section id="calculadora" class="tabs-content active space-y-6">
-            <div class="bg-amber-50 border-l-4 border-brand-orange p-4 rounded-r-lg">
-                <h3 class="font-bold text-amber-900 text-sm sm:text-base">Instrucciones de Uso</h3>
-                <p class="text-xs sm:text-sm text-amber-800 mt-1">Escribe tus cifras monetarias en la columna del <strong>Mes Actual</strong>. El sistema calculará automáticamente los porcentajes (%) de impacto y la utilidad neta real para compararla con los límites de la industria.</p>
+
+        <section id="p-estructura" class="tabs-content active space-y-6">
+            <div class="bg-amber-50 border-l-4 border-brand-orange p-4 rounded-r-lg text-sm text-amber-900">
+                <strong>Herramienta 1: Matriz de Costos Mensuales por Ciudad.</strong> Digita los gastos globales del mes seleccionado para medir el porcentaje de desvío frente a los modelos de la industria.
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                
-                <div class="bg-white p-5 rounded-xl shadow-md border border-amber-200 lg:col-span-2">
-                    <h4 class="font-bold text-lg text-brand-dark mb-4 pb-2 border-b flex justify-between">
-                        <span>Formulario: Ingresa Tus Cifras</span>
-                        <span class="text-xs text-amber-600 font-normal">Valores en pesos ($) sin puntos ni comas</span>
-                    </h4>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="block text-xs font-bold uppercase text-gray-600 mb-1">Ventas Netas del Mes (Sin Impuestos):</label>
-                            <input type="number" id="in-ventas" value="80000000" oninput="calcularFinanzas()" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none font-semibold text-lg text-emerald-700 bg-emerald-50/30">
-                        </div>
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                            <div>
-                                <label class="block text-xs font-medium text-gray-600 mb-1">Costo de Mercancía Real (CMV):</label>
-                                <input type="number" id="in-cmv" value="31000000" oninput="calcularFinanzas()" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
-                                <span class="text-[11px] text-gray-400">Insumos, materia prima y bebidas.</span>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-gray-600 mb-1">Mano de Obra (Nómina Total):</label>
-                                <input type="number" id="in-nomina" value="22400000" oninput="calcularFinanzas()" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
-                                <span class="text-[11px] text-gray-400">Personal operativo y administrativo.</span>
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-gray-600 mb-1">Arriendo y Administración:</label>
-                                <input type="number" id="in-arriendo" value="8000000" oninput="calcularFinanzas()" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-gray-600 mb-1">Servicios Públicos:</label>
-                                <input type="number" id="in-servicios" value="3200000" oninput="calcularFinanzas()" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-gray-600 mb-1">Marketing y Publicidad:</label>
-                                <input type="number" id="in-marketing" value="2400000" oninput="calcularFinanzas()" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
-                            </div>
-                            <div>
-                                <label class="block text-xs font-medium text-gray-600 mb-1">Reparación y Mantenimiento:</label>
-                                <input type="number" id="in-mantenimiento" value="800000" oninput="calcularFinanzas()" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs font-medium text-gray-600 mb-1">Otros Gastos (Suministros, Financieros, Seguros):</label>
-                            <input type="number" id="in-otros" value="9700000" oninput="calcularFinanzas()" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange focus:outline-none">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-brand-dark text-white p-5 rounded-xl shadow-md flex flex-col justify-between">
+                <div class="bg-white p-5 rounded-xl shadow border border-gray-200 lg:col-span-2 space-y-4">
+                    <h3 class="font-bold text-base text-brand-dark border-b pb-2">Ingreso de Cifras del Mes</h3>
                     <div>
-                        <h4 class="font-bold text-lg border-b border-slate-700 pb-2 mb-4 text-brand-orange text-center">
-                            📊 Resultados de Tu Mes Actual
-                        </h4>
-                        
-                        <div class="space-y-3 text-sm">
-                            <div class="flex justify-between border-b border-slate-800 pb-1 text-gray-400">
-                                <span>Ventas del Periodo:</span> 
-                                <span id="res-ventas" class="text-white font-bold">$0</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span>CMV Real:</span> 
-                                <span id="res-cmv" class="font-semibold">0%</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span>Mano de Obra:</span> 
-                                <span id="res-nomina">0%</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span>Arriendo:</span> 
-                                <span id="res-arriendo">0%</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span>Servicios Públicos:</span> 
-                                <span id="res-servicios">0%</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span>Marketing:</span> 
-                                <span id="res-marketing">0%</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span>Mantenimiento:</span> 
-                                <span id="res-mantenimiento">0%</span>
-                            </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-1">
-                                <span>Otros Gastos:</span> 
-                                <span id="res-otros">0%</span>
-                            </div>
+                        <label class="block text-xs font-bold text-gray-600 mb-1">VENTAS NETAS TOTALES (SIN IMPUESTOS):</label>
+                        <input type="number" id="est-ventas" value="80000000" oninput="calcularMatrizCostos()" class="w-full p-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-orange font-bold text-emerald-700 bg-emerald-50/20">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Costo de Mercancía Vendida (CMV Real $):</label>
+                            <input type="number" id="est-cmv" value="31000000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Mano de Obra / Nóminas operativa ($):</label>
+                            <input type="number" id="est-nomina" value="22400000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Arriendo (Canon e inmobiliaria $):</label>
+                            <input type="number" id="est-arriendo" value="8000000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Servicios Públicos ($):</label>
+                            <input type="number" id="est-servicios" value="3200000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Marketing y Pauta Publicitaria ($):</label>
+                            <input type="number" id="est-marketing" value="2400000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-600 mb-1">Reparación y Mantenimiento ($):</label>
+                            <input type="number" id="est-mantenimiento" value="800000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
                         </div>
                     </div>
-
-                    <div class="mt-6 p-3 bg-slate-800 rounded-lg text-center">
-                        <span class="block text-xs uppercase text-gray-400 font-bold tracking-wider">Utilidad Bruta Estimada</span>
-                        <span id="res-utilidad-dinamica" class="text-2xl font-black block mt-1 text-emerald-400">$0 (0%)</span>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Otros Gastos (Suministros, Financieros, Imprevistos $):</label>
+                        <input type="number" id="est-otros" value="9700000" oninput="calcularMatrizCostos()" class="w-full p-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div class="flex justify-end pt-2">
+                        <button onclick="guardarDatosSede()" class="bg-brand-orange text-white text-xs font-bold py-2 px-4 rounded-lg hover:bg-amber-600 shadow">💾 Guardar Cifras de esta Ciudad</button>
                     </div>
                 </div>
-            </div>
 
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                <h3 class="font-bold text-lg mb-2 text-brand-dark">🧐 Comparativa de Diagnóstico Frente a los Límites</h3>
-                <p class="text-xs text-gray-500 mb-4">El sistema evalúa tus porcentajes introducidos arriba con la línea roja de peligro (Mes 3 de la base de datos).</p>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-sm">
-                        <thead>
-                            <tr class="bg-gray-100 font-semibold text-gray-700">
-                                <th class="p-3 border-b">Estructura</th>
-                                <th class="p-3 border-b text-brand-orange">Tu Porcentaje Actual</th>
-                                <th class="p-3 border-b text-red-600">Límite Histórico de Pérdida</th>
-                                <th class="p-3 border-b">Meta Recomendada</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-200">
-                            <tr>
-                                <td class="p-3 font-medium">Costo de Insumos (CMV)</td>
-                                <td id="tbl-cmv" class="p-3 font-bold text-brand-dark">0%</td>
-                                <td class="p-3 text-red-500 font-semibold">46.99% </td>
-                                <td class="p-3 text-emerald-600 font-medium">Menor al 35% [cite: 47]</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-medium">Mano de Obra / Nóminas</td>
-                                <td id="tbl-nomina" class="p-3 font-bold text-brand-dark">0%</td>
-                                <td class="p-3 text-red-500 font-semibold">29.57% </td>
-                                <td class="p-3 text-emerald-600 font-medium">16% - 24% </td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-medium">Arrendamiento</td>
-                                <td id="tbl-arriendo" class="p-3 text-gray-600">0%</td>
-                                <td class="p-3 text-gray-400">10.03% </td>
-                                <td class="p-3 text-emerald-600 font-medium">8% - 10% </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="bg-brand-dark text-white p-5 rounded-xl shadow border flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-bold text-center text-brand-orange border-b border-slate-700 pb-2 mb-4">Análisis Porcentual</h3>
+                        <div class="space-y-3 text-xs">
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Costo Insumos (CMV):</span> <span id="out-pct-cmv" class="font-bold">0%</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Mano de Obra:</span> <span id="out-pct-nomina" class="font-bold">0%</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Arrendamiento:</span> <span id="out-pct-arriendo">0%</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Servicios Públicos:</span> <span id="out-pct-servicios">0%</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Marketing:</span> <span id="out-pct-marketing">0%</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Mantenimiento:</span> <span id="out-pct-mantenimiento">0%</span></div>
+                            <div class="flex justify-between border-b border-slate-800 pb-1"><span>% Otros Gastos:</span> <span id="out-pct-otros">0%</span></div>
+                        </div>
+                    </div>
+                    <div class="mt-6 p-4 bg-slate-800 rounded-lg text-center">
+                        <span class="block text-[11px] uppercase text-gray-400 tracking-wider">Utilidad de Operación Neta</span>
+                        <span id="out-utilidad-total" class="text-xl font-black block mt-1 text-emerald-400">$0 (0%)</span>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="guia" class="tabs-content space-y-6">
-            <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
-                <h2 class="text-xl font-bold text-brand-dark mb-2">📋 Auditoría Diagnóstica Operativa</h2>
-                <p class="text-sm text-gray-600 mb-4">Haz click en los recuadros para guardar tu progreso de control interno en las cocinas y salones.</p>
-                <div class="p-4 bg-slate-50 rounded-lg border space-y-3">
-                    <label class="flex items-start gap-3 text-sm cursor-pointer"><input type="checkbox" class="mt-1"> <span>¿El POS registra mermas y errores en tiempo real? [cite: 69]</span></label>
-                    <label class="flex items-start gap-3 text-sm cursor-pointer"><input type="checkbox" class="mt-1"> <span>¿Se realizan inventarios físicos cruzados de forma semanal? [cite: 71, 79]</span></label>
-                    <label class="flex items-start gap-3 text-sm cursor-pointer"><input type="checkbox" class="mt-1"> <span>¿El personal de servicio conoce el menú para aumentar el ticket promedio? [cite: 227, 244]</span></label>
+        <section id="p-cmv" class="tabs-content space-y-6">
+            <div class="bg-slate-800 text-white p-4 rounded-lg flex items-center justify-between">
+                <div>
+                    <h3 class="font-bold text-base">Herramienta 2: Auditor de Fugas e Inventarios</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">Aplica la fórmula estricta de la guía para calcular tu Costo de Mercancía Real.</p>
+                </div>
+                <span class="text-xs font-mono bg-slate-700 px-2 py-1 rounded text-brand-orange">Fórmula Pág. 4</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-xl shadow border space-y-4">
+                    <h4 class="font-bold text-sm text-brand-dark border-b pb-2">Entradas de Auditoría de Stock</h4>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Ventas Netas Totales del Periodo ($):</label>
+                        <input type="number" id="cmv-ventas" value="80000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Valor de Inventario Inicial ($):</label>
+                        <input type="number" id="cmv-inicial" value="12000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Compras Totales de Mercancía / Proveedores ($):</label>
+                        <input type="number" id="cmv-compras" value="34000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Valor de Inventario Final Físico ($):</label>
+                        <input type="number" id="cmv-final" value="15000000" oninput="ejecutarAuditoriaCMV()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow border flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-sm text-brand-dark border-b pb-2 mb-4">Resultado e Impacto Operativo</h4>
+                        <div class="p-4 bg-gray-50 rounded-lg space-y-2">
+                            <div class="flex justify-between text-sm"><span>Costo de Materia Prima Consumida:</span> <span id="out-cmv-consumido" class="font-bold text-brand-dark">$0</span></div>
+                            <div class="flex justify-between text-sm border-t pt-2 mt-2"><span>Porcentaje de CMV Real Evaluado:</span> <span id="out-cmv-pct-real" class="font-black text-lg text-brand-dark">0%</span></div>
+                        </div>
+                    </div>
+                    <div id="cmv-alert-box" class="p-4 rounded-lg text-xs mt-4">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="p-platos" class="tabs-content space-y-6">
+            <div class="bg-amber-50 border-l-4 border-brand-orange p-4 rounded-r-lg text-sm text-amber-900">
+                <strong>Herramienta 3: Escandallo e Ingeniería de Menú.</strong> La guía estipula buscar metas de rentabilidad por plato con un margen de utilidad superior al <strong>65%</strong> para equilibrar sobrecostos.
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white p-5 rounded-xl shadow border space-y-4">
+                    <h4 class="font-bold text-sm text-brand-dark border-b pb-2">Costeo de Ficha Técnica Individual</h4>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Nombre del Plato / Producto:</label>
+                        <input type="text" value="Pargo Rojo Especial" class="w-full p-2 border rounded-lg bg-gray-50 font-medium">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Costo Total de Insumos / Materia Prima (Receta $):</label>
+                        <input type="number" id="plt-costo" value="14000" oninput="calcularMargenPlato()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-medium text-gray-600 mb-1">Precio de Venta Neto Sugerido al Público ($):</label>
+                        <input type="number" id="plt-venta" value="45000" oninput="calcularMargenPlato()" class="w-full p-2 border rounded-lg focus:ring-brand-orange">
+                    </div>
+                </div>
+
+                <div class="bg-white p-5 rounded-xl shadow border flex flex-col justify-between">
+                    <div>
+                        <h4 class="font-bold text-sm text-brand-dark border-b pb-2 mb-4">Rentabilidad del Plato</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-50 p-3 rounded text-center">
+                                <span class="text-[11px] block text-gray-500 font-medium uppercase">Margen en Dinero</span>
+                                <span id="out-plt-dinero" class="text-lg font-bold text-brand-dark">$0</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded text-center">
+                                <span class="text-[11px] block text-gray-500 font-medium uppercase">Porcentaje de Margen</span>
+                                <span id="out-plt-pct" class="text-lg font-black text-brand-dark">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="plt-alert-box" class="p-4 rounded-lg text-xs mt-4 font-medium">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="p-auditoria" class="tabs-content space-y-6">
+            <div class="bg-white p-5 rounded-xl shadow border border-gray-200">
+                <div class="flex justify-between items-center border-b pb-3 mb-4">
+                    <h3 class="font-bold text-lg text-brand-dark">📋 Auditoría Interna & Repositorio de Contenido</h3>
+                    <button onclick="saveChecklist()" class="bg-brand-dark text-white text-xs font-bold py-2 px-4 rounded hover:bg-slate-800 transition">💾 Guardar Progreso Global</button>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="p-4 bg-slate-50 rounded-xl border border-gray-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-2 mb-3">
+                            <h4 class="font-bold text-sm text-brand-orange">Eje: Control de Inventario y Cadena de Suministro</h4>
+                            <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-medium">Soporte: Podcasts #140, #175, #191, #199</span>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-0" class="mt-0.5"> <div><strong>¿Se calculan los costos físicos reales cruzados contra el POS?</strong> <p class="text-gray-500">Permite detectar brechas teóricas inmediatas (Episodios 175 y 199 con Eliana Muñoz).</p></div></label>
+                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-1" class="mt-0.5"> <div><strong>¿Manejas ventanas de horarios fijos para la recepción de proveedores?</strong> <p class="text-gray-500">Evita coincidir con picos de comensales, garantizando el pesaje y conteo de insumos (Episodio 191 con David Penagos).</p></div></label>
+                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-2" class="mt-0.5"> <div><strong>¿Se ejecuta estrictamente el protocolo PEPS (FIFO)?</strong> <p class="text-gray-500">Rotación obligatoria por orden de ingreso para evitar mermas por vencimientos en cámaras de refrigeración.</p></div></label>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-gray-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-2 mb-3">
+                            <h4 class="font-bold text-sm text-brand-orange">Eje: Optimización Operativa de Nómina y Líderes</h4>
+                            <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-medium">Soporte: Podcasts #121, #163</span>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-3" class="mt-0.5"> <div><strong>¿Se distribuyen las horas de mano de obra según curvas de venta?</strong> <p class="text-gray-500">Evita sobrecargas salariales y recargos excesivos en días flojos (como lunes o martes).</p></div></label>
+                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-4" class="mt-0.5"> <div><strong>¿El establecimiento cuenta con organigramas y manuales de inducción escritos?</strong> <p class="text-gray-500">Reduce drásticamente la tasa de rotación laboral agilizando el acoplamiento del nuevo personal.</p></div></label>
+                        </div>
+                    </div>
+
+                    <div class="p-4 bg-slate-50 rounded-xl border border-gray-200">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b pb-2 mb-3">
+                            <h4 class="font-bold text-sm text-brand-orange">Eje: Activación Comercial y Ticket Promedio</h4>
+                            <span class="text-xs bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-medium">Soporte: Podcasts #117, #131, #132, #156, #178, #179</span>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-5" class="mt-0.5"> <div><strong>¿Los meseros aplican ventas sugestivas para inflar el consumo?</strong> <p class="text-gray-500">Entrenamiento enfocado a sugerir entradas, postres llamativos y bebidas especiales (Episodios 156 y 178).</p></div></label>
+                            <label class="flex items-start gap-3 text-xs cursor-pointer"><input type="checkbox" id="chk-6" class="mt-0.5"> <div><strong>¿Automatizas campañas directas a tus bases de datos?</strong> <p class="text-gray-500">Lanzamiento proactivo de promociones de corta duración y felicitaciones de cumpleaños automatizadas (Episodio 179).</p></div></label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-brand-dark text-gray-400 text-xs py-6 mt-12 border-t border-slate-700">
+    <footer class="bg-brand-dark text-gray-400 text-xs py-6 border-t border-slate-700">
         <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div>
+            <div class="text-center sm:text-left">
                 <p class="font-medium text-gray-300">&copy; 2026 Todos los derechos de autor reservados a nombre de Vibras Positivas.</p>
+                <p class="mt-0.5 text-gray-500">Código de ingeniería de software unificado para la optimización de rendimientos financieros.</p>
             </div>
-            <div class="text-right">
-                <span class="text-brand-orange font-semibold text-sm">VIBRAS POSITIVAS HM</span>
+            <div class="text-center sm:text-right">
+                <span class="text-brand-orange font-bold text-sm tracking-wide">VIBRAS POSITIVAS HM</span>
             </div>
         </div>
     </footer>
 
     <script>
+        // Cambiar pestañas de herramientas
         function switchTab(tabId) {
             document.querySelectorAll('.tabs-content').forEach(tab => tab.classList.remove('active'));
             document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -227,72 +280,194 @@
             document.getElementById(`btn-${tabId}`).classList.add('border-brand-orange', 'text-brand-orange');
         }
 
-        // FUNCIÓN CLAVE: Captura lo que escribes y hace las divisiones matemáticas matemáticas
-        function calcularFinanzas() {
-            // Obtener inputs del empresario
-            const ventas = parseFloat(document.getElementById('in-ventas').value) || 0;
-            const cmv = parseFloat(document.getElementById('in-cmv').value) || 0;
-            const nomina = parseFloat(document.getElementById('in-nomina').value) || 0;
-            const arriendo = parseFloat(document.getElementById('in-arriendo').value) || 0;
-            const servicios = parseFloat(document.getElementById('in-servicios').value) || 0;
-            const marketing = parseFloat(document.getElementById('in-marketing').value) || 0;
-            const mantenimiento = parseFloat(document.getElementById('in-mantenimiento').value) || 0;
-            const otros = parseFloat(document.getElementById('in-otros').value) || 0;
+        // CÁCULO DE HERRAMIENTA 1: Matriz de Costos Mensuales
+        function calcularMatrizCostos() {
+            const ventas = parseFloat(document.getElementById('est-ventas').value) || 0;
+            const cmv = parseFloat(document.getElementById('est-cmv').value) || 0;
+            const nomina = parseFloat(document.getElementById('est-nomina').value) || 0;
+            const arriendo = parseFloat(document.getElementById('est-arriendo').value) || 0;
+            const servicios = parseFloat(document.getElementById('est-servicios').value) || 0;
+            const marketing = parseFloat(document.getElementById('est-marketing').value) || 0;
+            const mantenimiento = parseFloat(document.getElementById('est-mantenimiento').value) || 0;
+            const otros = parseFloat(document.getElementById('est-otros').value) || 0;
 
-            if(ventas === 0) return;
+            if (ventas === 0) return;
 
-            // Fórmulas matemáticas básicas de conversión porcentual (Gasto / Ventas)
-            const pctCmv = (cmv / ventas) * 100;
-            const pctNomina = (nomina / ventas) * 100;
-            const pctArriendo = (arriendo / ventas) * 100;
-            const pctServicios = (servicios / ventas) * 100;
-            const pctMarketing = (marketing / ventas) * 100;
-            const pctMantenimiento = (mantenimiento / ventas) * 100;
-            const pctOtros = (otros / ventas) * 100;
+            const pCmv = (cmv / ventas) * 100;
+            const pNomina = (nomina / ventas) * 100;
+            const pArriendo = (arriendo / ventas) * 100;
+            const pServicios = (servicios / ventas) * 100;
+            const pMarketing = (marketing / ventas) * 100;
+            const pMantenimiento = (mantenimiento / ventas) * 100;
+            const pOtros = (otros / ventas) * 100;
 
-            // Calcular Utilidad Bruta Restante
-            const gastosTotales = cmv + nomina + arriendo + servicios + marketing + mantenimiento + otros;
-            const utilidadDinero = ventas - gastosTotales;
-            const pctUtilidad = (utilidadDinero / ventas) * 100;
+            const totalGastos = cmv + nomina + arriendo + servicios + marketing + mantenimiento + otros;
+            const utilidadDinero = ventas - totalGastos;
+            const pUtilidad = (utilidadDinero / ventas) * 100;
 
-            // Formatear dinero a moneda visible
-            const formatoMoneda = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+            document.getElementById('out-pct-cmv').innerText = `${pCmv.toFixed(2)}%`;
+            document.getElementById('out-pct-nomina').innerText = `${pNomina.toFixed(2)}%`;
+            document.getElementById('out-pct-arriendo').innerText = `${pArriendo.toFixed(2)}%`;
+            document.getElementById('out-pct-servicios').innerText = `${pServicios.toFixed(2)}%`;
+            document.getElementById('out-pct-marketing').innerText = `${pMarketing.toFixed(2)}%`;
+            document.getElementById('out-pct-mantenimiento').innerText = `${pMantenimiento.toFixed(2)}%`;
+            document.getElementById('out-pct-otros').innerText = `${pOtros.toFixed(2)}%`;
 
-            // Inyectar resultados calculados en pantalla
-            document.getElementById('res-ventas').innerText = formatoMoneda.format(ventas);
-            document.getElementById('res-cmv').innerText = `${pctCmv.toFixed(2)}%`;
-            document.getElementById('res-nomina').innerText = `${pctNomina.toFixed(2)}%`;
-            document.getElementById('res-arriendo').innerText = `${pctArriendo.toFixed(2)}%`;
-            document.getElementById('res-servicios').innerText = `${pctServicios.toFixed(2)}%`;
-            document.getElementById('res-marketing').innerText = `${pctMarketing.toFixed(2)}%`;
-            document.getElementById('res-mantenimiento').innerText = `${pctMantenimiento.toFixed(2)}%`;
-            document.getElementById('res-otros').innerText = `${pctOtros.toFixed(2)}%`;
-
-            // Mostrar el gran total en el bloque negro
-            const blockUtilidad = document.getElementById('res-utilidad-dinamica');
-            blockUtilidad.innerText = `${formatoMoneda.format(utilidadDinero)} (${pctUtilidad.toFixed(2)}%)`;
-            
-            if(utilidadDinero < 0) {
-                blockUtilidad.className = "text-2xl font-black block mt-1 text-red-500";
-            } else {
-                blockUtilidad.className = "text-2xl font-black block mt-1 text-emerald-400";
-            }
-
-            // Actualizar la tabla de semáforos/límites comparativos
-            const tblCmv = document.getElementById('tbl-cmv');
-            tblCmv.innerText = `${pctCmv.toFixed(2)}%`;
-            tblCmv.className = pctCmv > 35 ? "p-3 font-bold text-red-600 bg-red-50" : "p-3 font-bold text-emerald-600 bg-emerald-50";
-
-            const tblNomina = document.getElementById('tbl-nomina');
-            tblNomina.innerText = `${pctNomina.toFixed(2)}%`;
-            tblNomina.className = pctNomina > 24 ? "p-3 font-bold text-red-600 bg-red-50" : "p-3 font-bold text-emerald-600 bg-emerald-50";
-
-            document.getElementById('tbl-arriendo').innerText = `${pctArriendo.toFixed(2)}%`;
+            const fmt = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+            const outUt = document.getElementById('out-utilidad-total');
+            outUt.innerText = `${fmt.format(utilidadDinero)} (${pUtilidad.toFixed(2)}%)`;
+            outUt.className = utilidadDinero < 0 ? "text-xl font-black block mt-1 text-red-500" : "text-xl font-black block mt-1 text-emerald-400";
         }
 
-        // Arrancar cálculos automáticos al cargar la app por primera vez
+        // CÁLCULO DE HERRAMIENTA 2: Auditor de Inventarios (Fórmula de la Guía)
+        function ejecutarAuditoriaCMV() {
+            const ventas = parseFloat(document.getElementById('cmv-ventas').value) || 0;
+            const inicial = parseFloat(document.getElementById('cmv-inicial').value) || 0;
+            const compras = parseFloat(document.getElementById('cmv-compras').value) || 0;
+            const final = parseFloat(document.getElementById('cmv-final').value) || 0;
+
+            const consumoMercancia = inicial + compras - final;
+            document.getElementById('out-cmv-consumido').innerText = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }).format(consumoMercancia);
+
+            if(ventas === 0) return;
+            const pctReal = (consumoMercancia / ventas) * 100;
+            document.getElementById('out-cmv-pct-real').innerText = `${pctReal.toFixed(2)}%`;
+
+            const alertBox = document.getElementById('cmv-alert-box');
+            if (pctReal > 35) {
+                alertBox.className = "p-4 rounded-lg text-xs mt-4 bg-red-50 text-red-800 border border-red-200 font-medium";
+                alertBox.innerHTML = `<strong>🚨 Alerta Crítica (CMV Alto):</strong> Tu costo real del <strong>${pctReal.toFixed(2)}%</strong> excede el límite del 35%. Revisa inmediatamente pérdidas en transformación, errores en recetas o robos en cocina (Pág. 4).`;
+            } else {
+                alertBox.className = "p-4 rounded-lg text-xs mt-4 bg-emerald-50 text-emerald-800 border border-emerald-200 font-medium";
+                alertBox.innerHTML = `<strong>✅ Margen Saludable:</strong> El costo de stock se encuentra controlado por debajo de la barrera recomendada de la industria gastronómica.`;
+            }
+        }
+
+        // CÁLCULO DE HERRAMIENTA 3: Ingeniería de Menú (Margen del 65%)
+        function calcularMargenPlato() {
+            const costo = parseFloat(document.getElementById('plt-costo').value) || 0;
+            const venta = parseFloat(document.getElementById('plt-venta').value) || 0;
+
+            const margenDinero = venta - costo;
+            const pctMargen = venta > 0 ? (margenDinero / venta) * 100 : 0;
+
+            const fmt = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+            document.getElementById('out-plt-dinero').innerText = fmt.format(margenDinero);
+            document.getElementById('out-plt-pct').innerText = `${pctMargen.toFixed(2)}%`;
+
+            const alertBox = document.getElementById('plt-alert-box');
+            if (pctMargen < 65) {
+                alertBox.className = "p-4 rounded-lg text-xs mt-4 bg-amber-50 text-amber-800 border border-amber-200";
+                alertBox.innerHTML = `<strong>⚠️ Ajustar Ficha Técnica:</strong> El margen es del <strong>${pctMargen.toFixed(2)}%</strong>. La guía recomienda un promedio mayor al 65%. Considera renegociar costos de insumos con proveedores o reajustar las porciones proteicas del plato sin alterar la percepción de valor del cliente.`;
+            } else {
+                alertBox.className = "p-4 rounded-lg text-xs mt-4 bg-emerald-50 text-emerald-800 border border-emerald-200";
+                alertBox.innerHTML = `<strong>✨ Plato Rentable:</strong> Este producto cumple con los criterios de alta rentabilidad y ayuda a subsidiar platos con márgenes más ajustados.`;
+            }
+        }
+
+        // PERSISTENCIA MULTI-SEDE MEDIANTE LOCALSTORAGE
+        function obtenerKeySede() {
+            const sede = document.getElementById('global-ciudad').value;
+            return `vp_gastro_datos_${sede}`;
+        }
+
+        function guardarDatosSede() {
+            const datos = {
+                ventas: document.getElementById('est-ventas').value,
+                cmv: document.getElementById('est-cmv').value,
+                nomina: document.getElementById('est-nomina').value,
+                arriendo: document.getElementById('est-arriendo').value,
+                servicios: document.getElementById('est-servicios').value,
+                marketing: document.getElementById('est-marketing').value,
+                mantenimiento: document.getElementById('est-mantenimiento').value,
+                otros: document.getElementById('est-otros').value
+            };
+            localStorage.setItem(obtenerKeySede(), JSON.stringify(datos));
+            alert(`¡Cifras de la sede ${document.getElementById('global-ciudad').value.toUpperCase()} guardadas con éxito!`);
+        }
+
+        function cargarDatosSede() {
+            const guardados = localStorage.getItem(obtenerKeySede());
+            if (guardados) {
+                const datos = JSON.parse(guardados);
+                document.getElementById('est-ventas').value = datos.ventas;
+                document.getElementById('est-cmv').value = datos.cmv;
+                document.getElementById('est-nomina').value = datos.nomina;
+                document.getElementById('est-arriendo').value = datos.arriendo;
+                document.getElementById('est-servicios').value = datos.servicios;
+                document.getElementById('est-marketing').value = datos.marketing;
+                document.getElementById('est-mantenimiento').value = datos.mantenimiento;
+                document.getElementById('est-otros').value = datos.otros;
+            } else {
+                // Valores iniciales limpios por defecto
+                document.getElementById('est-ventas').value = "80000000";
+                document.getElementById('est-cmv').value = "31000000";
+                document.getElementById('est-nomina').value = "22400000";
+                document.getElementById('est-arriendo').value = "8000000";
+                document.getElementById('est-servicios').value = "3200000";
+                document.getElementById('est-marketing').value = "2400000";
+                document.getElementById('est-mantenimiento').value = "800000";
+                document.getElementById('est-otros').value = "9700000";
+            }
+            calcularMatrizCostos();
+        }
+
+        // CONTROL DEL CHECKLIST DE AUDITORÍA DE PROCESOS
+        function saveChecklist() {
+            const chkState = [];
+            for (let i = 0; i <= 6; i++) {
+                const el = document.getElementById(`chk-${i}`);
+                if(el) chkState.push({ id: i, checked: el.checked });
+            }
+            localStorage.setItem(`vp_gastro_chk_${document.getElementById('global-ciudad').value}`, JSON.stringify(chkState));
+            alert('¡Progreso de auditoría operativa guardado!');
+        }
+
+        function loadChecklist() {
+            const saved = localStorage.getItem(`vp_gastro_chk_${document.getElementById('global-ciudad').value}`);
+            if (saved) {
+                const states = JSON.parse(saved);
+                states.forEach(item => {
+                    const el = document.getElementById(`chk-${item.id}`);
+                    if (el) el.checked = item.checked;
+                });
+            } else {
+                for (let i = 0; i <= 6; i++) {
+                    const el = document.getElementById(`chk-${i}`);
+                    if (el) el.checked = false;
+                }
+            }
+        }
+
+        // Registro de Service Worker para capacidades de ejecución Offline
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                const swCode = `
+                    const CACHE = 'vp-gastro-v2';
+                    self.addEventListener('install', e => {
+                        e.waitUntil(caches.open(CACHE).then(c => c.addAll([location.href])));
+                    });
+                    self.addEventListener('fetch', e => {
+                        e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+                    });
+                `;
+                const blob = new Blob([swCode], { type: 'application/javascript' });
+                navigator.serviceWorker.register(URL.createObjectURL(blob));
+            });
+        }
+
+        // Inicialización coordinada al cargar el DOM
         window.addEventListener('DOMContentLoaded', () => {
-            calcularFinanzas();
+            cargarDatosSede();
+            ejecutarAuditoriaCMV();
+            calcularMargenPlato();
+            loadChecklist();
+            
+            // Vincular recarga del checklist al cambiar el selector de ciudad
+            const selector = document.getElementById('global-ciudad');
+            selector.addEventListener('change', () => {
+                loadChecklist();
+            });
         });
     </script>
 </body>
